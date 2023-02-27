@@ -4,7 +4,7 @@
 from keras import backend as K
 from keras.models import Sequential, Model  
 from keras.layers import *
-from keras.models import Model#, load_model
+from keras.models import Model
 from keras.optimizers import Nadam
 from keras.utils import Sequence
 
