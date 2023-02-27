@@ -7,10 +7,6 @@ def read_data(data_dir, split=True):
     
     data = pd.read_csv(data_dir + 'data.csv', index_col='CaseID')
     
-    #data_train = pd.read_csv(data_dir + 'data_train_ind.csv', index_col = 'CaseID')
-    #data_valid = pd.read_csv(data_dir + 'data_valid_ind.csv', index_col = 'CaseID')
-    #data_test = pd.read_csv(data_dir + 'data_test_ind.csv', index_col = 'CaseID')
-    
     data_train = pd.read_csv(data_dir + 'train_index.csv', index_col = 'CaseID')
     data_valid = pd.read_csv(data_dir + 'valid_index.csv', index_col = 'CaseID')
     data_test = pd.read_csv(data_dir + 'test_index.csv', index_col = 'CaseID')
