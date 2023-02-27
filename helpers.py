@@ -1,7 +1,5 @@
 import numpy as np
 
-
-
 def get_trace_helper(data):
     trace_helper = {}
 
