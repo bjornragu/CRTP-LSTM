@@ -164,7 +164,7 @@ def get_batch(data_frame, selected_ids, output_dim, feat_dic, helpers_dic, selec
      
 
 class BagDataGenerator(Sequence):
-    def __init__(self, data_frame, output_dim, feat_dic, helpers_dic, batch_size=128, shuffle=True, override_indexes=None, **batch_kwargs): #initialization function, all pretty clear think **batch_kwargs is used to put the configurations (defined later)
+    def __init__(self, data_frame, output_dim, feat_dic, helpers_dic, batch_size=128, shuffle=True, override_indexes=None, **batch_kwargs): 
         self.data_frame = data_frame
         self.indexes = np.array(self.data_frame.index) if override_indexes is None else override_indexes
         self.output_dim = output_dim
@@ -174,16 +174,16 @@ class BagDataGenerator(Sequence):
         self.shuffle = shuffle
         self.on_epoch_end()
         self.batch_kwargs = batch_kwargs
-    def __len__(self): #'Denotes the number of batches per epoch' - get a index batch index between 0 and the total number of batches,
-        return int(np.ceil(self.indexes.shape[0] / self.batch_size)) #ceil rounds up to next integer 
-    def __getitem__(self, index): #generate 1 batch of data
+    def __len__(self): 
+        return int(np.ceil(self.indexes.shape[0] / self.batch_size))
+    def __getitem__(self, index): 
         selected_ids = self.indexes[index*self.batch_size : (index+1)*self.batch_size] 
         return self.__data_generation(selected_ids)
-    def on_epoch_end(self): # Updates indexes after each epoch, if shuffle is true see new data each time makes model more robust
+    def on_epoch_end(self):
         if self.shuffle == True:
             np.random.shuffle(self.indexes)
-    def __data_generation(self, selected_ids): #need to figure out how to expand this to specify multipl seperate inputs and multiple seperate outputs
-        return get_batch(self.data_frame, selected_ids, self.output_dim, self.feat_dic, self.helpers_dic, **self.batch_kwargs) #use get batch_function here, think you just define the param you need in self and other prvious steps and the 
+    def __data_generation(self, selected_ids): 
+        return get_batch(self.data_frame, selected_ids, self.output_dim, self.feat_dic, self.helpers_dic, **self.batch_kwargs)  
 
 
         
